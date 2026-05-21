@@ -14,13 +14,12 @@ export default function Register() {
 
   function onSubmit(data: FormData) {
     console.log("register", data);
-    // stub: call API to register
     navigate("/citizen/dashboard");
   }
 
   return (
-    <div style={{ maxWidth: 520, margin: "28px auto" }}>
-      <h2>Citizen Register</h2>
+    <div className="max-w-md mx-auto mt-12 bg-white p-6 rounded-md shadow-sm">
+      <h2 className="text-xl font-semibold mb-4">Citizen Register</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           label="Full name"
@@ -37,9 +36,11 @@ export default function Register() {
           type="password"
           {...register("password", { required: true })}
         />
-        <button type="submit" style={{ padding: "8px 12px" }}>
-          Register
-        </button>
+        <div className="mt-3">
+          <button type="submit" className="btn">
+            Register
+          </button>
+        </div>
       </form>
     </div>
   );

@@ -16,26 +16,27 @@ export default function ReportForm() {
 
   function onSubmit(data: FormData) {
     console.log("submit report", data, file);
-    // stub: upload and create report
     navigate("/citizen/dashboard");
   }
 
   return (
-    <div style={{ maxWidth: 700, margin: "24px auto" }}>
-      <h2>Create Report</h2>
+    <div className="max-w-2xl mx-auto mt-8 bg-white p-6 rounded-md shadow-sm">
+      <h2 className="text-xl font-semibold mb-4">Create Report</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormInput label="Title" {...register("title", { required: true })} />
-        <label style={{ display: "block", marginBottom: 12 }}>
-          <div style={{ marginBottom: 6 }}>Description</div>
+        <label className="block mb-3">
+          <div className="mb-1 text-sm text-slate-700">Description</div>
           <textarea
             {...register("description", { required: true })}
-            style={{ width: "100%", minHeight: 120, padding: 8 }}
+            className="w-full min-h-[120px] p-3 border rounded-md"
           />
         </label>
         <PhotoUpload onFile={setFile} />
-        <button type="submit" style={{ padding: "8px 12px" }}>
-          Submit Report
-        </button>
+        <div className="mt-3">
+          <button type="submit" className="btn">
+            Submit Report
+          </button>
+        </div>
       </form>
     </div>
   );

@@ -10,14 +10,19 @@ export default function App() {
   return (
     <BrowserRouter>
       <Header />
-      <main>
+      <main className="min-h-[calc(100vh-64px)]">
         <Routes>
           <Route
             path="/"
             element={
-              <div style={{ padding: 24 }}>
+              <div className="p-6">
                 Home.{" "}
-                <Link to="/citizen/dashboard">Go to Citizen Dashboard</Link>
+                <Link
+                  to="/citizen/dashboard"
+                  className="text-primary underline"
+                >
+                  Go to Citizen Dashboard
+                </Link>
               </div>
             }
           />

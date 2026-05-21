@@ -13,13 +13,12 @@ export default function Login() {
 
   function onSubmit(data: FormData) {
     console.log("login", data);
-    // stub: in a real app call API and set auth
     navigate("/citizen/dashboard");
   }
 
   return (
-    <div style={{ maxWidth: 520, margin: "28px auto" }}>
-      <h2>Citizen Login</h2>
+    <div className="max-w-md mx-auto mt-12 bg-white p-6 rounded-md shadow-sm">
+      <h2 className="text-xl font-semibold mb-4">Citizen Login</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           label="Email"
@@ -31,9 +30,11 @@ export default function Login() {
           type="password"
           {...register("password", { required: true })}
         />
-        <button type="submit" style={{ padding: "8px 12px" }}>
-          Login
-        </button>
+        <div className="mt-3">
+          <button type="submit" className="btn">
+            Login
+          </button>
+        </div>
       </form>
     </div>
   );

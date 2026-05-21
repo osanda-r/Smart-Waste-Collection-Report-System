@@ -20,15 +20,11 @@ export default function PhotoUpload({ onFile }: Props) {
   }
 
   return (
-    <div style={{ marginBottom: 12 }}>
+    <div className="mb-3">
       <input type="file" accept="image/*" onChange={handleChange} />
       {preview && (
-        <div style={{ marginTop: 8 }}>
-          <img
-            src={preview}
-            alt="preview"
-            style={{ maxWidth: "160px", borderRadius: 6 }}
-          />
+        <div className="mt-2">
+          <img src={preview} alt="preview" className="max-w-xs rounded-md" />
         </div>
       )}
     </div>
