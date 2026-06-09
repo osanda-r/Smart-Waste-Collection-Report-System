@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput";
+import { loginUser } from "../services/auth";
 
 type FormData = {
   email: string;
@@ -15,11 +16,20 @@ export default function Login() {
     formState: { errors },
   } = useForm<FormData>();
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState<string | undefined>(undefined);
   const navigate = useNavigate();
 
   function onSubmit(data: FormData) {
-    console.log("login", data);
-    navigate("/citizen/dashboard");
+    setServerError(undefined);
+    setLoading(true);
+    loginUser({ email: data.email, password: data.password, role: "citizen" })
+      .then((res) => {
+        if (!res.ok) setServerError(res.error);
+        else navigate("/citizen/dashboard");
+      })
+      .catch((err) => setServerError(String(err)))
+      .finally(() => setLoading(false));
   }
 
   return (
@@ -72,9 +82,12 @@ export default function Login() {
           </Link>
         </div>
 
+        {serverError && (
+          <div className="text-sm text-red-600 mb-2">{serverError}</div>
+        )}
         <div className="mt-3">
-          <button type="submit" className="btn w-full">
-            Login
+          <button type="submit" className="btn w-full" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
           </button>
         </div>
 

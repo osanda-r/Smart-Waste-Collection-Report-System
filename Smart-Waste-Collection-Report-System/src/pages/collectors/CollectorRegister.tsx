@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../../components/FormInput";
+import { registerUser } from "../../services/auth";
 
 type FormData = {
   name: string;
@@ -16,11 +17,25 @@ export default function CollectorRegister() {
     formState: { errors },
   } = useForm<FormData>();
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState<string | undefined>(undefined);
   const navigate = useNavigate();
 
   function onSubmit(data: FormData) {
-    console.log("collector register", data);
-    navigate("/collectors/dashboard");
+    setServerError(undefined);
+    setLoading(true);
+    registerUser({
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      role: "collector",
+    })
+      .then((res) => {
+        if (!res.ok) setServerError(res.error);
+        else navigate("/collectors/dashboard");
+      })
+      .catch((err) => setServerError(String(err)))
+      .finally(() => setLoading(false));
   }
 
   return (
@@ -73,9 +88,12 @@ export default function CollectorRegister() {
           </div>
         )}
 
+        {serverError && (
+          <div className="text-sm text-red-600 mb-2">{serverError}</div>
+        )}
         <div className="mt-3">
-          <button type="submit" className="btn w-full">
-            Register
+          <button type="submit" className="btn w-full" disabled={loading}>
+            {loading ? "Registering..." : "Register"}
           </button>
         </div>
 
