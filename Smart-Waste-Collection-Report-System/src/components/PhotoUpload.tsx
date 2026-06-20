@@ -21,7 +21,12 @@ export default function PhotoUpload({ onFile }: Props) {
 
   return (
     <div className="mb-3">
-      <input type="file" accept="image/*" onChange={handleChange} />
+      <input
+        type="file"
+        accept="image/*"
+        aria-label="Upload a photo"
+        onChange={handleChange}
+      />
       {preview && (
         <div className="mt-2">
           <img src={preview} alt="preview" className="max-w-xs rounded-md" />
