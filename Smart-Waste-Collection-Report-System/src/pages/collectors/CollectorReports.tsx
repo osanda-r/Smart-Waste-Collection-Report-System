@@ -12,8 +12,18 @@ export default function CollectorReports() {
 
   useEffect(() => {
     setReports([
-      { id: "r1", location: "North District", status: "Pending", priority: "High" },
-      { id: "r2", location: "Market Road", status: "Collected", priority: "Medium" },
+      {
+        id: "r1",
+        location: "North District",
+        status: "Pending",
+        priority: "High",
+      },
+      {
+        id: "r2",
+        location: "Market Road",
+        status: "Collected",
+        priority: "Medium",
+      },
       { id: "r3", location: "Green Lane", status: "Assigned", priority: "Low" },
     ]);
   }, []);
@@ -69,7 +79,9 @@ export default function CollectorReports() {
                       {report.priority} priority
                     </span>
                   </div>
-                  <p className="mt-1 text-sm text-slate-500">Report ID: {report.id}</p>
+                  <p className="mt-1 text-sm text-slate-500">
+                    Report ID: {report.id}
+                  </p>
                 </div>
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">
