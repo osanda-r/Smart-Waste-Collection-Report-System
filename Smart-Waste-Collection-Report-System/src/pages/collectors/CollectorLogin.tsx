@@ -33,8 +33,11 @@ export default function CollectorLogin() {
   }
 
   return (
-    <div className="max-w-md mx-auto mt-12 bg-white p-6 rounded-md shadow-sm">
-      <h2 className="text-xl font-semibold mb-4">Collector Login</h2>
+    <div className="auth-shell">
+      <div className="auth-card">
+      <span className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-slate-700">Team access</span>
+      <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-900">Collector sign in</h2>
+      <p className="mt-2 mb-6 text-sm leading-6 text-slate-500">Open your route, manage assigned work, and update collection status.</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           label="Email"
@@ -56,7 +59,7 @@ export default function CollectorLogin() {
             <input
               type={showPassword ? "text" : "password"}
               {...register("password", { required: "Password is required" })}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/40"
+              className="field-input pr-16"
             />
             <button
               type="button"
@@ -84,11 +87,12 @@ export default function CollectorLogin() {
 
         <div className="mt-4 text-center text-sm">
           Don't have an account?{" "}
-          <Link to="/collectors/register" className="text-primary font-medium">
+          <Link to="/collectors/register" className="font-semibold text-emerald-700">
             Register
           </Link>
         </div>
       </form>
+      </div>
     </div>
   );
 }

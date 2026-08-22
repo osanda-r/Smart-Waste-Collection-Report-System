@@ -6,11 +6,11 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
 
 export default function FormInput({ label, ...rest }: Props) {
   return (
-    <label className="block mb-3">
-      {label && <div className="mb-1 text-sm text-slate-700">{label}</div>}
+    <label className="block mb-4">
+      {label && <div className="mb-1.5 text-sm font-medium text-slate-700">{label}</div>}
       <input
         {...rest}
-        className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/40"
+        className="field-input"
       />
     </label>
   );

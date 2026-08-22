@@ -39,8 +39,11 @@ export default function CollectorRegister() {
   }
 
   return (
-    <div className="max-w-md mx-auto mt-12 bg-white p-6 rounded-md shadow-sm">
-      <h2 className="text-xl font-semibold mb-4">Collector Register</h2>
+    <div className="auth-shell">
+      <div className="auth-card">
+      <span className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-slate-700">Team access</span>
+      <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-900">Join the field team</h2>
+      <p className="mt-2 mb-6 text-sm leading-6 text-slate-500">Create an account to organize local collection work with confidence.</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           label="Full name"
@@ -71,7 +74,7 @@ export default function CollectorRegister() {
             <input
               type={showPassword ? "text" : "password"}
               {...register("password", { required: "Password is required" })}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/40"
+              className="field-input pr-16"
             />
             <button
               type="button"
@@ -99,11 +102,12 @@ export default function CollectorRegister() {
 
         <div className="mt-4 text-center text-sm">
           Already have an account?{" "}
-          <Link to="/collectors/login" className="text-primary font-medium">
+          <Link to="/collectors/login" className="font-semibold text-emerald-700">
             Login
           </Link>
         </div>
       </form>
+      </div>
     </div>
   );
 }
