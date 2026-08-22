@@ -65,7 +65,7 @@ export default function Dashboard() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
-      <section className="relative overflow-hidden rounded-3xl bg-linear-to-tr from-emerald-600 to-teal-500 text-white shadow-xl">
+      <section className="relative overflow-hidden rounded-3xl bg-linear-to-tr from-green-900 to-teal-700 text-white shadow-xl">
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,white_0,transparent_35%)]" />
         <div className="relative grid gap-8 px-6 py-10 lg:grid-cols-[1.4fr_0.9fr] lg:px-10 lg:py-12">
           <div className="space-y-5">
@@ -84,7 +84,7 @@ export default function Dashboard() {
             <div className="flex flex-wrap gap-3">
               <Link
                 to="/citizen/report/new"
-                className="inline-flex items-center gap-2 rounded-lg bg-white text-emerald-700 px-4 py-2 text-sm font-medium shadow-sm hover:shadow-md"
+                className="inline-flex items-center gap-2 rounded-lg bg-white text-green-800 px-4 py-2 text-sm font-medium shadow-sm hover:shadow-md"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

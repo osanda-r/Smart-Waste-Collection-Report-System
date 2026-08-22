@@ -30,7 +30,7 @@ export default function CollectorDashboard() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
-      <section className="rounded-3xl bg-linear-to-br from-slate-900 via-slate-800 to-emerald-700 p-6 text-white shadow-xl lg:p-8">
+      <section className="rounded-3xl bg-linear-to-br from-slate-950 via-green-950 to-teal-800 p-6 text-white shadow-xl lg:p-8">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <span className="inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white/80">

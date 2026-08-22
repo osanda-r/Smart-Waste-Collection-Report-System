@@ -14,7 +14,7 @@ export default function Home() {
         "Submit waste complaints, attach photos, and monitor each report.",
       to: "/citizen/dashboard",
       cta: "Open citizen dashboard",
-      accent: "from-emerald-600 to-teal-500",
+      accent: "from-green-800 to-teal-600",
     },
     {
       title: "Collector portal",
@@ -28,7 +28,7 @@ export default function Home() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 lg:py-14">
-      <section className="relative overflow-hidden rounded-3xl bg-linear-to-br from-emerald-700 via-emerald-600 to-lime-500 text-white shadow-2xl">
+      <section className="relative overflow-hidden rounded-3xl bg-linear-to-br from-green-950 via-green-800 to-teal-700 text-white shadow-2xl">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.24),transparent_32%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.14),transparent_28%)]" />
         <div className="relative grid gap-10 px-6 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:py-16">
           <div className="space-y-6">
@@ -47,7 +47,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-3">
               <Link
                 to="/register"
-                className="inline-flex items-center justify-center rounded-lg bg-white px-5 py-3 text-sm font-semibold text-emerald-700 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                className="inline-flex items-center justify-center rounded-lg bg-white px-5 py-3 text-sm font-semibold text-green-800 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
               >
                 Citizen sign up
               </Link>
@@ -121,7 +121,7 @@ export default function Home() {
               </p>
               <Link
                 to={card.to}
-                className="mt-5 inline-flex items-center justify-center rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                className="mt-5 inline-flex items-center justify-center rounded-lg bg-green-800 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-green-900"
               >
                 {card.cta}
               </Link>

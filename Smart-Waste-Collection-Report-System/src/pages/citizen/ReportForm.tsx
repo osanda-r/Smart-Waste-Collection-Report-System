@@ -25,7 +25,7 @@ export default function ReportForm() {
     <div className="max-w-5xl mx-auto px-4 py-8">
       <section className="rounded-3xl bg-white shadow-sm ring-1 ring-slate-200 overflow-hidden">
         <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
-          <aside className="bg-linear-to-br from-emerald-600 to-lime-500 px-6 py-8 text-white lg:px-8 lg:py-10">
+          <aside className="bg-linear-to-br from-green-900 to-teal-700 px-6 py-8 text-white lg:px-8 lg:py-10">
             <span className="inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-white/90">
               New complaint
             </span>
@@ -43,7 +43,7 @@ export default function ReportForm() {
                   key={step}
                   className="flex items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 backdrop-blur-sm"
                 >
-                  <div className="grid h-9 w-9 place-items-center rounded-full bg-white text-emerald-700 font-semibold">
+                  <div className="grid h-9 w-9 place-items-center rounded-full bg-white text-green-800 font-semibold">
                     {index + 1}
                   </div>
                   <div>

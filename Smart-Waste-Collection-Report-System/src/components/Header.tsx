@@ -6,7 +6,7 @@ export default function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5">
         <div className="flex items-center gap-3">
           <Link to="/" className="flex items-center gap-3">
-            <div className="grid h-10 w-10 place-items-center rounded-xl bg-linear-to-br from-emerald-500 to-teal-700 text-sm font-extrabold tracking-tight text-white shadow-lg shadow-emerald-900/15">
+            <div className="grid h-10 w-10 place-items-center rounded-xl bg-linear-to-br from-green-700 to-teal-700 text-sm font-extrabold tracking-tight text-white shadow-lg shadow-green-950/20">
               W
             </div>
             <span className="text-lg font-bold tracking-tight text-slate-900">
