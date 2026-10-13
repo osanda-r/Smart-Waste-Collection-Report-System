@@ -63,9 +63,12 @@ export function mapEvent(id: string, d: DocumentData): ReportEvent {
 }
 
 export function mapUser(id: string, d: DocumentData): UserProfile {
-  const roleValue = d.role === "collector" ? "worker" : d.role;
+  const roleValue = String(d.role ?? "citizen").trim().toLowerCase();
+  const normalizedRole = roleValue === "collector" ? "worker" : roleValue;
   const role: Role =
-    roleValue === "worker" || roleValue === "admin" ? roleValue : "citizen";
+    normalizedRole === "worker" || normalizedRole === "admin"
+      ? normalizedRole
+      : "citizen";
 
   return {
     id,
