@@ -69,7 +69,13 @@ export async function loginUser(payload: {
     const profile = await getUserProfile(credential.user.uid);
     if (!profile) {
       await signOut(auth);
-      return { ok: false, error: "No profile was found for this account. Contact the council." };
+      return {
+        ok: false,
+        error:
+          payload.expectedRole === "admin"
+            ? "This account has no admin profile. Create users/{uid} in Firestore and set role to admin."
+            : "No profile was found for this account. Contact the council.",
+      };
     }
     if (profile.role !== payload.expectedRole) {
       await signOut(auth);

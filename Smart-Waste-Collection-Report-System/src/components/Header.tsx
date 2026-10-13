@@ -43,6 +43,8 @@ export default function Header() {
           .slice(0, 2)
           .toUpperCase() || "WW"
       : "WW";
+  const navItems =
+    auth.status === "ready" ? (NAV[auth.profile.role] ?? []) : [];
 
   return (
     <header className="sticky top-0 z-30 border-b border-slate-200/70 bg-white/80 backdrop-blur-xl">
@@ -56,7 +58,7 @@ export default function Header() {
 
         {auth.status === "ready" ? (
           <nav className="flex min-w-0 items-center gap-1 overflow-x-auto">
-            {NAV[auth.profile.role].map((item) => (
+            {navItems.map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}

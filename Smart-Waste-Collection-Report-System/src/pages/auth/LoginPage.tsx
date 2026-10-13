@@ -47,7 +47,10 @@ export default function LoginPage({ role }: { role: Role }) {
     setServerError(undefined);
     const res = await loginUser({ email: data.email, password: data.password, expectedRole: role });
     if (!res.ok) setServerError(res.error);
-    else navigate(ROLE_HOME[role], { replace: true });
+    else {
+      await auth.refreshProfile();
+      navigate(ROLE_HOME[res.value.role], { replace: true });
+    }
   }
 
   return (

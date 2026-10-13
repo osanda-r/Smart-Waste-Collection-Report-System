@@ -63,11 +63,15 @@ export function mapEvent(id: string, d: DocumentData): ReportEvent {
 }
 
 export function mapUser(id: string, d: DocumentData): UserProfile {
+  const roleValue = d.role === "collector" ? "worker" : d.role;
+  const role: Role =
+    roleValue === "worker" || roleValue === "admin" ? roleValue : "citizen";
+
   return {
     id,
     name: String(d.name ?? ""),
     email: String(d.email ?? ""),
-    role: (d.role ?? "citizen") as Role,
+    role,
     zoneId: d.zoneId ?? null,
     createdAt: toDate(d.createdAt),
   };
