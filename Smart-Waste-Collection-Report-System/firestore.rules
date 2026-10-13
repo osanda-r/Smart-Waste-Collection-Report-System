@@ -1,0 +1,117 @@
+rules_version = '2';
+
+// WasteWise Firestore security rules.
+// Roles live in users/{uid}.role: "citizen" | "worker" | "admin".
+// Only admins can change roles; users cannot promote themselves.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function roleOf() {
+      return signedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        ? get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role
+        : null;
+    }
+
+    function isAdmin() {
+      return signedIn() && roleOf() == 'admin';
+    }
+
+    function isWorker() {
+      return signedIn() && roleOf() == 'worker';
+    }
+
+    // A report is visible to the admin, the citizen who reported it, and the worker it is assigned to.
+    function canSeeReport(data) {
+      return isAdmin()
+        || data.reporterId == request.auth.uid
+        || data.assignedWorkerId == request.auth.uid;
+    }
+
+    // ---- Users -------------------------------------------------------------
+    match /users/{userId} {
+      allow get: if signedIn() && (request.auth.uid == userId || isAdmin());
+      allow list: if isAdmin();
+
+      // Self-registration may only create citizen or worker accounts.
+      allow create: if signedIn()
+        && request.auth.uid == userId
+        && request.resource.data.role in ['citizen', 'worker']
+        && request.resource.data.keys().hasOnly(['name', 'email', 'role', 'zoneId', 'createdAt']);
+
+      // Users can edit their name and zone; only admins can change roles.
+      allow update: if isAdmin()
+        || (signedIn()
+          && request.auth.uid == userId
+          && request.resource.data.role == resource.data.role
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name', 'zoneId']));
+
+      allow delete: if isAdmin();
+    }
+
+    // ---- Collection zones and schedules --------------------------------------
+    match /zones/{zoneId} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+
+    match /schedules/{scheduleId} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+
+    // ---- Reports -----------------------------------------------------------
+    match /reports/{reportId} {
+      allow get: if signedIn() && canSeeReport(resource.data);
+      allow list: if signedIn() && canSeeReport(resource.data);
+
+      // Citizens create their own reports, which always start as pending and unassigned.
+      allow create: if signedIn()
+        && request.resource.data.reporterId == request.auth.uid
+        && request.resource.data.status == 'pending'
+        && request.resource.data.assignedWorkerId == null;
+
+      // Admins manage everything. Workers may only progress their own tasks,
+      // and may only mark a task resolved when at least one completion photo is attached.
+      allow update: if isAdmin()
+        || (isWorker()
+          && resource.data.assignedWorkerId == request.auth.uid
+          && request.resource.data.diff(resource.data).affectedKeys()
+               .hasOnly(['status', 'notes', 'completionPhotoUrls', 'updatedAt', 'resolvedAt'])
+          && (request.resource.data.status != 'resolved'
+              || request.resource.data.completionPhotoUrls.size() > 0));
+
+      allow delete: if isAdmin();
+
+      // Timeline of status changes. Append-only.
+      match /events/{eventId} {
+        allow read: if signedIn() && canSeeReport(get(/databases/$(database)/documents/reports/$(reportId)).data);
+        allow create: if signedIn()
+          && request.resource.data.actorId == request.auth.uid
+          && (isAdmin()
+            || get(/databases/$(database)/documents/reports/$(reportId)).data.reporterId == request.auth.uid
+            || get(/databases/$(database)/documents/reports/$(reportId)).data.assignedWorkerId == request.auth.uid);
+        allow update, delete: if false;
+      }
+    }
+
+    // ---- Notifications -----------------------------------------------------
+    match /notifications/{notificationId} {
+      allow get: if signedIn() && resource.data.userId == request.auth.uid;
+      allow list: if signedIn() && resource.data.userId == request.auth.uid;
+
+      // Staff and workers notify citizens and workers about status changes and assignments.
+      allow create: if (isAdmin() || isWorker()) && request.resource.data.userId is string;
+
+      // Recipients can only mark their notifications as read.
+      allow update: if signedIn()
+        && resource.data.userId == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read']);
+
+      allow delete: if signedIn() && resource.data.userId == request.auth.uid;
+    }
+  }
+}
