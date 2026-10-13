@@ -1,4 +1,4 @@
-# WasteWise — Smart Waste Collection Report System
+# EcoTrack — Smart Waste Collection Report System
 
 A web app for municipal waste management in Sri Lanka and similar councils.
 
