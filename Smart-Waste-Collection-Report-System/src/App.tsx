@@ -22,6 +22,7 @@ import AdminAnalytics from "./pages/admin/Analytics";
 import WorkerDashboard from "./pages/worker/Dashboard";
 import WorkerTasks from "./pages/worker/Tasks";
 import WorkerTaskDetail from "./pages/worker/TaskDetail";
+import logo from "./assets/EcoTrack Smart Waste Collection Logo.png";
 
 function NotFound() {
   return (
@@ -44,7 +45,7 @@ function Footer() {
     <footer className="border-t border-[#E7EFE6] bg-white">
       <div className="mx-auto flex max-w-[1280px] flex-col gap-4 px-4 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
-          <img src="/ecotrack-logo.svg" alt="EcoTrack" className="h-8" />
+          <img src={logo} alt="EcoTrack Smart Waste Collection" className="h-8 w-auto" />
           <span className="hidden text-xs font-medium text-[#94A3A8] sm:block">© {new Date().getFullYear()} EcoTrack</span>
         </div>
         <div className="text-xs font-medium leading-5 text-[#64748B] sm:text-right">

@@ -5,6 +5,7 @@ import FormInput from "../../components/FormInput";
 import { useAuth } from "../../hooks/useAuth";
 import { registerUser } from "../../services/auth";
 import { ROLE_HOME, type Role } from "../../lib/types";
+import logo from "../../assets/EcoTrack Smart Waste Collection Logo.png";
 import heroBg from "../../assets/ecotrack-hero-bg.png";
 
 type FormData = { name: string; email: string; password: string };
@@ -44,7 +45,7 @@ export default function RegisterPage({ role }: { role: Exclude<Role, "admin"> })
           <div className="absolute inset-0 p-10 flex flex-col justify-between text-white">
             <div>
               <Link to="/" className="inline-flex items-center gap-3 rounded-2xl bg-white p-2 pr-4 shadow-xl">
-                <img src="/ecotrack-logo.svg" alt="EcoTrack" className="h-10" />
+                <img src={logo} alt="EcoTrack Smart Waste Collection" className="h-10 w-auto" />
               </Link>
               <div className="mt-8 max-w-[480px]">
                 <div className="inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] ring-1 ring-white/20 backdrop-blur">

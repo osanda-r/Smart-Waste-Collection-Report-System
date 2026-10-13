@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import heroBg from "../assets/ecotrack-hero-bg.png";
+import logo from "../assets/EcoTrack Smart Waste Collection Logo.png";
 
 const steps = [
   {
@@ -102,9 +103,9 @@ export default function Home() {
 
             <div className="mt-5 flex items-center gap-3">
               <img
-                src="/ecotrack-logo.svg"
-                alt="EcoTrack"
-                className="hidden h-[38px] rounded-xl bg-white p-1.5 shadow-lg sm:block"
+                src={logo}
+                alt="EcoTrack Smart Waste Collection"
+                className="hidden h-[38px] w-auto rounded-xl bg-white p-1.5 shadow-lg sm:block"
               />
               <div className="hidden sm:block">
                 <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/70">SMART WASTE COLLECTION &amp; REPORTING</div>

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import FormInput from "../components/FormInput";
 import { sendPasswordReset } from "../services/auth";
 import heroBg from "../assets/ecotrack-hero-bg.png";
+import logo from "../assets/EcoTrack Smart Waste Collection Logo.png";
 
 type FormData = { email: string };
 
@@ -31,7 +32,7 @@ export default function ForgotPassword() {
           <div className="absolute inset-0 bg-gradient-to-br from-[#052E16] via-[#14532D] to-[#0F766E] opacity-[0.88]" />
           <div className="absolute inset-0 p-10 flex flex-col justify-between text-white">
             <Link to="/" className="inline-flex w-fit items-center gap-3 rounded-2xl bg-white p-2 pr-4 shadow-xl">
-              <img src="/ecotrack-logo.svg" alt="EcoTrack" className="h-10" />
+              <img src={logo} alt="EcoTrack Smart Waste Collection" className="h-10 w-auto" />
             </Link>
             <div className="max-w-[480px]">
               <h1 className="text-[36px] font-[800] leading-[1.05] tracking-[-0.03em]">We’ll get you back in.</h1>
