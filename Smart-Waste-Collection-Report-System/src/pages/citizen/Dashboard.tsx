@@ -13,7 +13,7 @@ import { StatCard, LoadingBlock, ErrorBlock, EmptyState, Card } from "../../comp
 import ReportRow from "../../components/ReportRow";
 import NotificationsPanel from "../../components/NotificationsPanel";
 import UpcomingPickups from "../../components/UpcomingPickups";
-import heroBg from "../../assets/ecotrack-hero-bg.jpg";
+import heroBg from "../../assets/ecotrack-hero-bg.png";
 import type { AppNotification, Report } from "../../lib/types";
 
 export default function CitizenDashboard() {

@@ -5,7 +5,7 @@ import FormInput from "../../components/FormInput";
 import { useAuth } from "../../hooks/useAuth";
 import { loginUser } from "../../services/auth";
 import { ROLE_HOME, type Role } from "../../lib/types";
-import heroBg from "../../assets/ecotrack-hero-bg.jpg";
+import heroBg from "../../assets/ecotrack-hero-bg.png";
 
 const COPY: Record<Role, { eyebrow: string; title: string; description: string; badge: string; accent: string }> = {
   citizen: {

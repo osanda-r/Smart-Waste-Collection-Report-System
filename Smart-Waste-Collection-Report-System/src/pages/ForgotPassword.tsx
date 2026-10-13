@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import FormInput from "../components/FormInput";
 import { sendPasswordReset } from "../services/auth";
-import heroBg from "../assets/ecotrack-hero-bg.jpg";
+import heroBg from "../assets/ecotrack-hero-bg.png";
 
 type FormData = { email: string };
 

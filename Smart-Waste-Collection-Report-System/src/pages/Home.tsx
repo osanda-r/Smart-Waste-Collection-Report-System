@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import heroBg from "../assets/ecotrack-hero-bg.jpg";
+import heroBg from "../assets/ecotrack-hero-bg.png";
 
 const steps = [
   {
