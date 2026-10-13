@@ -51,7 +51,7 @@ function Footer() {
         <div className="text-xs font-medium leading-5 text-[#64748B] sm:text-right">
           <span className="font-bold text-[#0F1F16]">Smart Waste Collection & Reporting System</span> • Track waste. Improve collection. Build cleaner communities.
           <br className="hidden sm:block" />
-          <span className="text-[#94A3A8]">Premium • Accessible • Secure • Built for every user</span>
+          {/* <span className="text-[#94A3A8]">Developed by Osanda Abeysinghe</span> */}
         </div>
       </div>
     </footer>
