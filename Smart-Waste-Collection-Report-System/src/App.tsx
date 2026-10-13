@@ -25,13 +25,35 @@ import WorkerTaskDetail from "./pages/worker/TaskDetail";
 
 function NotFound() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-16 text-center">
-      <h1 className="text-3xl font-bold text-slate-900">Page not found</h1>
-      <p className="mt-3 text-sm leading-6 text-slate-600">The page you requested does not exist.</p>
-      <Link to="/" className="mt-6 inline-flex rounded-lg bg-emerald-600 px-5 py-3 text-sm font-semibold text-white">
-        Return home
-      </Link>
+    <div className="mx-auto max-w-[560px] px-4 py-16 text-center">
+      <div className="rounded-[28px] border border-[#E7EFE6] bg-white p-10 shadow-[0_16px_48px_rgba(15,31,22,0.08)]">
+        <div className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-[#F0FDF4] text-[#15803D] ring-1 ring-[#BBF7D0]">◎</div>
+        <h1 className="mt-4 text-[28px] font-[800] tracking-[-0.03em] text-[#0F1F16]">Page not found</h1>
+        <p className="mt-2 text-sm font-medium leading-6 text-[#64748B]">The page you requested does not exist or you don’t have access. Let’s get you back.</p>
+        <Link to="/" className="btn mt-6 px-7">
+          Return to EcoTrack home →
+        </Link>
+        <p className="mt-4 text-xs font-medium text-[#94A3A8]">EcoTrack • Track waste. Improve collection. Build cleaner communities.</p>
+      </div>
     </div>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t border-[#E7EFE6] bg-white">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-4 px-4 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+        <div className="flex items-center gap-3">
+          <img src="/ecotrack-logo.svg" alt="EcoTrack" className="h-8" />
+          <span className="hidden text-xs font-medium text-[#94A3A8] sm:block">© {new Date().getFullYear()} EcoTrack</span>
+        </div>
+        <div className="text-xs font-medium leading-5 text-[#64748B] sm:text-right">
+          <span className="font-bold text-[#0F1F16]">Smart Waste Collection & Reporting System</span> • Track waste. Improve collection. Build cleaner communities.
+          <br className="hidden sm:block" />
+          <span className="text-[#94A3A8]">Premium • Accessible • Secure • Built for every user</span>
+        </div>
+      </div>
+    </footer>
   );
 }
 
@@ -40,7 +62,7 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter>
         <Header />
-        <main className="min-h-[calc(100vh-64px)]">
+        <main className="min-h-[calc(100vh-64px)] bg-[#FBFCF8]">
           <Routes>
             <Route path="/" element={<Home />} />
 
@@ -77,6 +99,7 @@ export default function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
+        <Footer />
       </BrowserRouter>
     </AuthProvider>
   );
