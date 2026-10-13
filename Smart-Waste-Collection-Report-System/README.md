@@ -18,6 +18,12 @@ npm run lint
 npm run build
 ```
 
+## Deploying to Netlify
+
+The repository-root `netlify.toml` configures Netlify to run `npm ci --include=dev && npm run build` in `Smart-Waste-Collection-Report-System`, then publish that directory's `dist` output. The explicit install uses the committed lockfile and includes development dependencies such as TypeScript and Vite, even when the deployment environment has not installed them beforehand. Deploy the repository with this configuration rather than publishing the source directory.
+
+A fallback rewrite serves `index.html` for client-side routes, so opening or refreshing URLs such as `/login`, `/citizen/dashboard`, and `/worker/tasks` loads the React app instead of Netlify's 404 page. Existing static files are served normally, and the app handles unknown routes with its own not-found page.
+
 ## Roles and routes
 
 | Role | Sign-in page | Home | Pages |
