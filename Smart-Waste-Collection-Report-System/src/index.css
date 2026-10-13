@@ -1,10 +1,24 @@
 @import "tailwindcss";
 
-@import url("https://fonts.googleapis.com/css2?family=Gidole&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Urbanist:wght@400;500;600;700;800&display=swap");
 
 :root {
-  --container-padding: 1rem;
-  --ink: #15251f;
+  --eco-50: #f0fdf4;
+  --eco-100: #dcfce7;
+  --eco-200: #bbf7d0;
+  --eco-300: #86efac;
+  --eco-400: #4ade80;
+  --eco-500: #22c55e;
+  --eco-600: #16a34a;
+  --eco-700: #15803d;
+  --eco-800: #166534;
+  --eco-900: #14532d;
+  --eco-950: #052e16;
+  --ink: #0f1f16;
+  --ink-soft: #475569;
+  --surface: #fbfcf8;
+  --surface-2: #f6f7f3;
+  --line: #e7efe6;
 }
 
 html,
@@ -14,48 +28,161 @@ body,
 }
 
 body {
-  background:
-    radial-gradient(circle at 8% -5%, rgba(21, 94, 55, 0.16), transparent 27rem),
-    radial-gradient(circle at 96% 16%, rgba(14, 116, 144, 0.12), transparent 23rem),
-    #f8faf7;
+  background: var(--surface);
   color: var(--ink);
-  font-family: "Urbanist", system-ui, sans-serif;
+  font-family: "Plus Jakarta Sans", "Urbanist", system-ui, -apple-system, Segoe UI, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-* { -webkit-font-smoothing: antialiased; }
+/* Premium scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: #cbd5c8; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #a8c1a6; }
 ::selection { background: #bbf7d0; color: #14532d; }
 
+/* Premium buttons */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.65rem 1rem;
-  border-radius: 0.75rem;
+  gap: 0.5rem;
+  padding: 0.85rem 1.35rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: -0.01em;
   color: #fff;
-  background: linear-gradient(135deg, #14532d, #0f766e);
-  box-shadow: 0 8px 18px rgba(20, 83, 45, 0.20);
-  font-weight: 650;
-  transition: transform 150ms ease, box-shadow 150ms ease, filter 150ms ease;
+  background: linear-gradient(135deg, #0f5132 0%, #15803d 45%, #0d9488 100%);
+  box-shadow: 0 10px 24px rgba(21, 83, 45, 0.22), 0 2px 8px rgba(21,83,45,0.12);
+  transition: all 180ms cubic-bezier(.2,.8,.2,1);
+  border: 1px solid rgba(255,255,255,0.14);
 }
-
-.btn:hover:not(:disabled) { filter: brightness(1.08); transform: translateY(-1px); box-shadow: 0 11px 22px rgba(20, 83, 45, 0.26); }
-.btn:disabled { cursor: not-allowed; opacity: 0.65; }
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(21, 83, 45, 0.28), 0 4px 12px rgba(21,83,45,0.14);
+  filter: brightness(1.04);
+}
+.btn:active:not(:disabled) { transform: translateY(0px); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
 .btn-outline {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.35rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: -0.01em;
+  color: #14532d;
+  background: rgba(255,255,255,0.9);
+  border: 1.5px solid #d1e7d6;
+  box-shadow: 0 6px 18px rgba(15,31,22,0.06);
+  backdrop-filter: blur(10px);
+  transition: all 180ms ease;
+}
+.btn-outline:hover {
+  background: #fff;
+  border-color: #86efac;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(15,31,22,0.08);
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.65rem 1rem;
-  border-radius: 0.75rem;
-  border: 1px solid #bbf7d0;
-  color: #166534;
-  background: rgba(255, 255, 255, 0.8);
-  font-weight: 650;
-  transition: background 150ms ease, transform 150ms ease;
+  border-radius: 999px;
+  font-weight: 600;
+  color: #334155;
+  transition: all 150ms ease;
+}
+.btn-ghost:hover { background: #f1f5f1; color: #0f1f16; }
+
+.btn-sm { padding: 0.55rem 1rem; font-size: 0.85rem; }
+.btn-lg { padding: 1rem 1.8rem; font-size: 1rem; }
+
+/* Premium cards */
+.card-premium {
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(226, 232, 226, 0.9);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px rgba(15,31,22,0.06), 0 1px 3px rgba(15,31,22,0.04);
+  backdrop-filter: blur(16px);
 }
 
-.btn-outline:hover { background: #f0fdf4; transform: translateY(-1px); }
-.auth-shell { min-height: calc(100vh - 65px); display: grid; place-items: center; padding: 3rem 1rem; }
-.auth-card { width: 100%; max-width: 27rem; padding: 2rem; border: 1px solid rgba(203, 213, 225, 0.7); border-radius: 1.5rem; background: rgba(255, 255, 255, 0.88); box-shadow: 0 25px 60px rgba(21, 37, 31, 0.10); backdrop-filter: blur(14px); }
-.field-input { width: 100%; border: 1px solid #dbe5df; border-radius: 0.75rem; background: #fbfefc; padding: 0.7rem 0.85rem; color: #15251f; outline: none; transition: border-color 150ms ease, box-shadow 150ms ease, background 150ms ease; }
-.field-input:focus { border-color: #22c55e; background: #fff; box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15); }
+/* Auth */
+.auth-shell {
+  min-height: calc(100vh - 72px);
+  display: grid;
+  place-items: center;
+  padding: 2rem 1rem;
+  background:
+    radial-gradient(800px 400px at 10% -10%, rgba(34,197,94,0.10), transparent 60%),
+    radial-gradient(700px 500px at 95% 10%, rgba(13,148,136,0.08), transparent 60%),
+    linear-gradient(180deg, #fbfcf8 0%, #f6f7f3 100%);
+}
+.auth-card {
+  width: 100%;
+  max-width: 28rem;
+  padding: 2rem;
+  border-radius: 1.75rem;
+  background: rgba(255,255,255,0.96);
+  border: 1px solid rgba(226,232,226,0.9);
+  box-shadow: 0 24px 64px rgba(15,31,22,0.10), 0 8px 24px rgba(15,31,22,0.06);
+  backdrop-filter: blur(20px);
+}
+
+/* Inputs */
+.field-input {
+  width: 100%;
+  border: 1.5px solid #dde8de;
+  border-radius: 0.95rem;
+  background: #fbfefb;
+  padding: 0.82rem 1rem;
+  color: #0f1f16;
+  font-weight: 500;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 160ms ease;
+  box-shadow: 0 1px 2px rgba(15,31,22,0.04);
+}
+.field-input::placeholder { color: #94a3a8; font-weight: 400; }
+.field-input:hover { border-color: #c5dbcb; background: #fff; }
+.field-input:focus {
+  border-color: #22c55e;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(34,197,94,0.12), 0 4px 12px rgba(15,31,22,0.06);
+}
+.field-input:disabled { opacity: 0.6; background: #f1f5f1; }
+
+/* Focus ring utility */
+.focus-ring:focus-visible { outline: 2px solid #22c55e; outline-offset: 2px; }
+
+/* Animations */
+@keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
+@keyframes shimmer { 0% { transform: translateX(-100%) } 100% { transform: translateX(100%) } }
+
+/* Glass effect */
+.glass {
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(16px) saturate(1.2);
+  border: 1px solid rgba(255,255,255,0.6);
+}
+.glass-dark {
+  background: rgba(15,31,22,0.72);
+  backdrop-filter: blur(16px) saturate(1.1);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+/* Premium gradients */
+.eco-gradient { background: linear-gradient(135deg, #052e16 0%, #14532d 35%, #0f766e 100%); }
+.eco-gradient-soft { background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #f0fdfa 100%); }
+
+/* Typography tweaks */
+h1, h2, h3 { letter-spacing: -0.02em; }
+
+/* Hide leaflet attribution a bit premium */
+.leaflet-control-attribution { font-size: 10px !important; opacity: 0.7; }

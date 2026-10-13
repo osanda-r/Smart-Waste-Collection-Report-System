@@ -23,41 +23,55 @@ export default function AdminDashboard() {
   const error = reports.error ?? workers.error ?? zones.error;
 
   return (
-    <div className="mx-auto max-w-6xl space-y-8 px-4 py-8">
-      <PageHeader
-        eyebrow="Municipal council"
-        title="Operations dashboard"
-        description="Triage new complaints, assign crews and keep an eye on resolution times."
-        actions={
-          <>
-            <Link to="/admin/reports" className="btn px-4 py-2.5 text-sm">Review reports</Link>
-            <Link to="/admin/map" className="btn-outline px-4 py-2.5 text-sm">Open map</Link>
-          </>
-        }
-      />
+    <div className="mx-auto max-w-[1280px] space-y-6 px-4 py-6 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden rounded-[28px] border border-[#E7EFE6] bg-gradient-to-br from-white via-[#F6F7F3] to-[#E8F5E9] p-6 shadow-sm sm:p-7">
+        <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-emerald-100 opacity-70 blur-2xl" />
+        <div className="absolute -left-10 -bottom-10 h-32 w-32 rounded-full bg-teal-100 opacity-50 blur-2xl" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,46,22,0.015)_1px,transparent_1px),linear-gradient(rgba(5,46,22,0.015)_1px,transparent_1px)] bg-[size:32px_32px]" />
+        <div className="relative">
+          <PageHeader
+            eyebrow="Municipal council • Operations HQ"
+            title="Operations dashboard"
+            description="Triage new complaints, assign the nearest crew, and keep resolution times tight — all from one calm, clear view."
+            actions={
+              <>
+                <Link to="/admin/reports" className="btn px-6">
+                  Review reports →
+                </Link>
+                <Link to="/admin/map" className="btn-outline px-6">
+                  Open live map
+                </Link>
+              </>
+            }
+          />
+        </div>
+      </section>
+
       {error && <ErrorBlock message={error} />}
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard label="Total reports" value={reports.data ? all.length : "—"} />
-        <StatCard label="Awaiting assignment" value={reports.data ? unassigned : "—"} hint="Pending reports" />
-        <StatCard label="Active workers" value={workers.data ? workers.data.length : "—"} hint={`${zones.data?.length ?? 0} collection zones`} />
-        <StatCard label="Avg. time to resolve" value={avgHours === null ? "—" : `${avgHours.toFixed(1)} h`} />
+        <StatCard label="Total reports" value={reports.data ? all.length : "—"} hint="All time • Live sync" icon={<span className="text-sm">◈</span>} />
+        <StatCard label="Awaiting assignment" value={reports.data ? unassigned : "—"} hint="Pending • Needs crew" icon={<span className="h-2 w-2 rounded-full bg-amber-400" />} />
+        <StatCard label="Active workers" value={workers.data ? workers.data.length : "—"} hint={`${zones.data?.length ?? 0} collection zones`} icon={<span className="text-sm">◎</span>} />
+        <StatCard label="Avg. time to resolve" value={avgHours === null ? "—" : `${avgHours.toFixed(1)} h`} hint="Submission → resolved" icon={<span className="text-sm">◷</span>} />
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+      <section className="grid gap-6 lg:grid-cols-[1.4fr_0.7fr]">
         <Card>
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-slate-900">Latest reports</h2>
-            <Link to="/admin/reports" className="text-sm font-semibold text-emerald-700">View all →</Link>
+            <h2 className="text-[18px] font-[800] tracking-[-0.02em] text-[#0F1F16]">Latest reports</h2>
+            <Link to="/admin/reports" className="rounded-full bg-[#052E16] px-4 py-1.5 text-xs font-bold text-white hover:bg-black">
+              View all →
+            </Link>
           </div>
           {reports.loading && <LoadingBlock />}
-          <div className="divide-y divide-slate-100">
+          <div className="divide-y divide-[#E7EFE6]">
             {recent.map((r) => (
-              <Link key={r.id} to={`/admin/reports/${r.id}`} className="flex flex-wrap items-center justify-between gap-3 py-3 hover:bg-slate-50">
+              <Link key={r.id} to={`/admin/reports/${r.id}`} className="group flex flex-wrap items-center justify-between gap-3 py-4 hover:bg-[#F6F7F3]/70 -mx-2 px-2 rounded-xl transition">
                 <div className="min-w-0">
-                  <div className="font-semibold text-slate-900">{r.title}</div>
-                  <div className="text-sm text-slate-500">
-                    {CATEGORY_LABELS[r.category]} · {r.zoneName ?? "Outside zones"} · {formatDateTime(r.createdAt)}
+                  <div className="font-bold tracking-[-0.01em] text-[#0F1F16] group-hover:text-[#14532D]">{r.title}</div>
+                  <div className="text-[13px] font-medium text-[#64748B]">
+                    {CATEGORY_LABELS[r.category]} • {r.zoneName ?? "Outside zones"} • {formatDateTime(r.createdAt)}
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
@@ -66,20 +80,22 @@ export default function AdminDashboard() {
                 </div>
               </Link>
             ))}
-            {reports.data && recent.length === 0 && <p className="py-6 text-sm text-slate-500">No reports yet.</p>}
+            {reports.data && recent.length === 0 && <p className="py-10 text-center text-sm font-medium text-[#64748B]">No reports yet — citizen submissions will appear here instantly.</p>}
           </div>
         </Card>
 
         <Card>
-          <h2 className="text-lg font-semibold text-slate-900">Status breakdown</h2>
-          <div className="mt-4 space-y-3">
+          <h2 className="text-[18px] font-[800] tracking-[-0.02em] text-[#0F1F16]">Status breakdown</h2>
+          <p className="mt-1 text-xs font-medium text-[#64748B]">Share of reports by lifecycle stage.</p>
+          <div className="mt-5 space-y-4">
             {REPORT_STATUSES.map((status) => (
               <StatusBar key={status} status={status} count={statusCounts[status] ?? 0} total={all.length} />
             ))}
           </div>
-          <p className="mt-5 text-sm text-slate-500">
-            {all.filter((r) => isOpen(r.status)).length} reports are still open.
-          </p>
+          <div className="mt-6 rounded-2xl bg-[#F6F7F3] p-4 text-center">
+            <div className="text-xl font-extrabold text-[#0F1F16]">{all.filter((r) => isOpen(r.status)).length}</div>
+            <div className="text-xs font-bold uppercase tracking-wide text-[#64748B]">Reports still open</div>
+          </div>
         </Card>
       </section>
     </div>
@@ -90,12 +106,12 @@ function StatusBar({ status, count, total }: { status: ReportStatus; count: numb
   const pct = total === 0 ? 0 : Math.round((count / total) * 100);
   return (
     <div>
-      <div className="mb-1 flex justify-between text-sm">
-        <span className="font-medium text-slate-700">{STATUS_LABELS[status]}</span>
-        <span className="text-slate-500">{count}</span>
+      <div className="mb-1.5 flex justify-between text-sm">
+        <span className="font-semibold text-[#334155]">{STATUS_LABELS[status]}</span>
+        <span className="font-bold text-[#0F1F16]">{count} <span className="font-medium text-[#94A3A8]">• {pct}%</span></span>
       </div>
-      <div className="h-2.5 overflow-hidden rounded-full bg-slate-100">
-        <div className="h-full rounded-full" style={{ width: `${pct}%`, background: STATUS_COLORS[status] }} />
+      <div className="h-2.5 overflow-hidden rounded-full bg-[#E7EFE6]">
+        <div className="h-full rounded-full transition-all duration-700" style={{ width: `${pct}%`, background: STATUS_COLORS[status] }} />
       </div>
     </div>
   );
