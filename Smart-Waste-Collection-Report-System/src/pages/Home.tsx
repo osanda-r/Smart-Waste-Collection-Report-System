@@ -88,7 +88,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#052E16]/92 via-[#0A3A1F]/78 to-[#0A3A1F]/28" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#FBFCF8] via-transparent to-transparent opacity-60" />
           {/* subtle grid */}
-          <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
+          {/* <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)", backgroundSize: "48px 48px" }} /> */}
         </div>
 
         <div className="relative mx-auto grid max-w-[1280px] gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[1.05fr_0.85fr] lg:gap-10 lg:px-8 lg:py-[54px]">
@@ -109,7 +109,7 @@ export default function Home() {
               />
               <div className="hidden sm:block">
                 <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/70">SMART WASTE COLLECTION &amp; REPORTING</div>
-                <div className=" -mt-1 text-sm font-semibold text-white">Municipal • Citizen • Field crew</div>
+                
               </div>
             </div>
 
@@ -126,9 +126,9 @@ export default function Home() {
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link to="/register" className="btn bg-white !text-[#052E16] hover:!bg-white shadow-[0_12px_32px_rgba(0,0,0,0.18)] border-white">
+              <Link to="/register" className="btn bg-white !text-[#eeefee] hover:!bg-white shadow-[0_12px_32px_rgba(0,0,0,0.18)] border-white">
                 <span>Start reporting — free</span>
-                <span className="grid h-7 w-7 place-items-center rounded-full bg-[#052E16] text-white">→</span>
+                <span className="grid h-7 w-7 place-items-center rounded-full bg-[#05652d] text-white">→</span>
               </Link>
               <Link to="/login" className="btn-outline !border-white/30 !bg-white/10 !text-white backdrop-blur hover:!bg-white hover:!text-[#052E16]">
                 Citizen login
